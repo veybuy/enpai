@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="联系恩派科技 - WhatsApp、微信、电话多种方式，7×24小时为您服务">
     <meta name="keywords" content="联系建站公司,建站咨询,企业建站联系方式,恩派科技电话">
     <title>联系我们 | 恩派科技 - 5年1980元全包建站服务</title>
@@ -12,254 +12,375 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- 移动端修复样式 - 高优先级覆盖 -->
     <style>
-        /* ===== 移动端紧急修复 - 防止溢出 + 触摸优化 ===== */
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            overflow-x: hidden !important;
+        /* ========== 1. 防止页面溢出 ========== */
+        html, body {
+            overflow-x: hidden;
             width: 100%;
             max-width: 100vw;
-            position: relative;
         }
-
-        /* 修复所有容器溢出 */
-        .container, .navbar .container, .footer .container, section {
-            max-width: 100%;
-            overflow-x: hidden;
-            padding-left: 16px;
-            padding-right: 16px;
+        
+        /* ========== 2. 联系区域响应式 ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
         }
-
-        /* 导航栏移动端完美适配 */
+        
+        .contact-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            border-radius: 12px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .contact-item-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .contact-item-title {
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .contact-item-desc {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            word-break: break-all;
+        }
+        
+        .contact-item-arrow {
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        
+        .service-time-card {
+            background: linear-gradient(135deg, var(--dark), #1a1a2e);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            color: white;
+        }
+        
+        .service-time-row {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .service-time-row:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .response-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            margin-top: 24px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .response-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .response-item {
+            text-align: center;
+            padding: 16px;
+            background: var(--gray-100);
+            border-radius: 12px;
+        }
+        
+        .response-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .response-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+        
+        .guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* ========== 3. 移动端导航修复（覆盖现有CSS） ========== */
+        
+        /* 遮罩层 */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .nav-overlay.active {
+            display: block;
+        }
+        
+        /* 移动端下拉菜单覆盖 - 使用更高优先级选择器 */
         @media (max-width: 768px) {
+            /* 联系区域改为单列 */
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .contact-card,
+            .service-time-card,
+            .response-card {
+                padding: 24px;
+            }
+            
+            .contact-item {
+                padding: 16px;
+            }
+            
+            .contact-item-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+            
+            /* 导航栏容器定位 */
             .navbar .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: nowrap;
-                gap: 12px;
-                padding: 12px 16px;
+                position: relative;
             }
-
-            .logo {
-                flex-shrink: 0;
-            }
-
-            .logo span {
-                font-size: 1rem;
-                white-space: nowrap;
-            }
-
-            .logo img, .logo-icon img {
-                max-height: 45px !important;
-                width: auto;
-            }
-
-            /* 移动端菜单按钮 */
-            .mobile-menu-btn {
-                display: flex !important;
-                flex-direction: column;
-                justify-content: space-between;
-                width: 30px;
-                height: 24px;
-                background: transparent;
-                border: none;
-                cursor: pointer;
-                z-index: 1001;
-                flex-shrink: 0;
-            }
-
-            .mobile-menu-btn span {
-                display: block;
-                width: 100%;
-                height: 3px;
-                background-color: var(--gray-800, #1e293b);
-                border-radius: 3px;
-                transition: all 0.3s ease;
-            }
-
-            /* 移动端导航菜单 */
-            .nav-links {
+            
+            /* 覆盖 .nav-links 样式 */
+            .navbar .container .nav-links {
+                display: none;
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 85%;
+                width: 80%;
                 max-width: 320px;
                 height: 100vh;
                 background: white;
                 flex-direction: column;
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding: 80px 24px 40px;
-                margin: 0;
-                gap: 20px;
-                transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+                padding: 80px 20px 20px;
+                transition: right 0.3s ease;
                 z-index: 1000;
-                box-shadow: -5px 0 30px rgba(0,0,0,0.15);
                 overflow-y: auto;
-                list-style: none;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                left: auto;
+                gap: 0;
+                border-top: none;
+                max-height: 100vh;
             }
-
-            .nav-links.active {
+            
+            .navbar .container .nav-links.active {
+                display: flex;
                 right: 0;
             }
-
-            /* 遮罩层 */
-            .nav-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
+            
+            .navbar .container .nav-item {
                 width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.5);
-                z-index: 999;
-                visibility: hidden;
-                opacity: 0;
-                transition: all 0.3s ease;
+                border-bottom: 1px solid var(--gray-200);
+                position: relative;
             }
-
-            .nav-overlay.active {
-                visibility: visible;
-                opacity: 1;
-            }
-
-            .nav-item {
-                width: 100%;
-                margin: 0 !important;
-            }
-
-            .nav-item > a {
+            
+            .navbar .container .nav-item > a {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
-                padding: 12px 0;
-                font-size: 1.1rem;
-                font-weight: 500;
+                padding: 15px 0;
                 width: 100%;
-                border-bottom: 1px solid #e2e8f0;
+                border-radius: 0;
             }
-
-            /* 移动端下拉菜单重置 */
-            .dropdown {
-                position: static;
+            
+            .navbar .container .nav-item > a:hover,
+            .navbar .container .nav-item > a.active {
+                background: transparent;
             }
-
-            .dropdown-menu {
+            
+            /* 覆盖 .dropdown-menu 的 display:none !important */
+            .navbar .container .nav-item.dropdown .dropdown-menu {
+                display: none !important;
                 position: static;
-                box-shadow: none;
-                background: #f8fafc;
-                border-radius: 12px;
-                padding: 8px 0;
-                margin-top: 8px;
-                width: 100%;
                 opacity: 1;
                 visibility: visible;
                 transform: none;
-                display: none;
+                box-shadow: none;
                 border: none;
-                transition: none;
+                background: var(--gray-100);
+                border-radius: 8px;
+                margin: 5px 0 10px;
+                padding: 8px;
+                min-width: auto;
+                width: 100%;
+                top: auto;
+                left: auto;
             }
-
-            .dropdown-menu.show-mobile {
+            
+            /* 展开时显示 */
+            .navbar .container .nav-item.dropdown.open .dropdown-menu {
                 display: block !important;
             }
-
-            .dropdown-menu li a {
-                padding: 10px 16px;
-                font-size: 0.95rem;
-            }
-
-            .lang-switcher-wrapper {
-                margin-top: 16px;
-                width: 100%;
-            }
-
-            .lang-switcher-btn {
-                justify-content: center;
-                width: 100%;
-                padding: 10px;
-                background: #f1f5f9;
-                border-radius: 40px;
-            }
-
-            .lang-dropdown {
-                position: relative;
-                width: 100%;
-                top: 8px;
-                left: 0;
-                right: auto;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            }
-
-            /* 修复溢出关键点 */
-            .footer-grid, .footer .container {
-                overflow-x: hidden;
-            }
-            .footer-col ul li a, .footer-col ul li span {
-                word-break: break-word;
-                white-space: normal;
-            }
-
-            /* 联系页面响应式 */
-            [style*="grid-template-columns:1fr 1fr"] {
-                grid-template-columns: 1fr !important;
-                gap: 32px !important;
-            }
-
-            .contact-card, [style*="padding:40px"] {
-                padding: 24px !important;
-            }
-
-            /* 快速响应网格 */
-            [style*="grid-template-columns:1fr 1fr;gap:16px"] {
-                gap: 12px !important;
-            }
-        }
-
-        /* 桌面端确保菜单可见 */
-        @media (min-width: 769px) {
-            .mobile-menu-btn, .nav-overlay {
-                display: none !important;
-            }
-            .dropdown-menu {
+            
+            .navbar .container .dropdown-menu::before {
                 display: none;
             }
-            .dropdown:hover .dropdown-menu {
+            
+            .navbar .container .dropdown-menu li a {
+                padding: 12px 15px;
+                border-radius: 6px;
+            }
+            
+            .navbar .container .dropdown-menu li a:hover {
+                background: var(--gray-200);
+                padding-left: 15px;
+            }
+            
+            /* 下拉箭头旋转 */
+            .navbar .container .dropdown > a .fa-chevron-down {
+                transition: transform 0.3s;
+                margin-left: auto;
+            }
+            
+            .navbar .container .dropdown.open > a .fa-chevron-down {
+                transform: rotate(180deg);
+            }
+            
+            /* 覆盖 nav-cta 样式 */
+            .navbar .container .nav-cta {
+                margin-left: 0;
+                margin-top: 10px;
+                text-align: center;
+                justify-content: center;
+            }
+            
+            /* 语言切换器移动端适配 */
+            .navbar .container .lang-nav-item {
+                border-bottom: none;
+            }
+            
+            .navbar .container .lang-switcher-wrapper {
+                width: 100%;
+            }
+            
+            .navbar .container .lang-switcher-btn {
+                width: 100%;
+                justify-content: space-between;
+                background: var(--gray-100);
+                border-color: var(--gray-200);
+                color: var(--gray-700);
+                text-shadow: none;
+            }
+            
+            .navbar .container .lang-switcher-btn span {
+                display: inline;
+            }
+            
+            .navbar .container .lang-dropdown {
+                position: static;
+                width: 100%;
+                margin-top: 5px;
+                box-shadow: none;
+                border: 1px solid var(--gray-200);
+                opacity: 0;
+                visibility: hidden;
+                transform: none;
+                display: none;
+            }
+            
+            .navbar .container .lang-dropdown.show {
+                opacity: 1;
+                visibility: visible;
                 display: block;
             }
+            
+            /* 菜单按钮 */
+            .mobile-menu-btn {
+                display: flex;
+                z-index: 1001;
+            }
+            
+            /* 菜单打开时禁止背景滚动 */
+            body.menu-open {
+                overflow: hidden;
+            }
         }
-
-        /* 额外安全溢出隐藏 */
-        img, iframe, video, svg {
-            max-width: 100%;
-            height: auto;
+        
+        @media (max-width: 480px) {
+            .response-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding-top: 100px !important;
+            }
         }
-        .container, .section, footer {
-            overflow-x: hidden;
-        }
-        .footer-brand p {
-            word-break: break-word;
-        }
-        .social-links a {
-            display: inline-flex;
+        
+        /* 平板端 769px-1024px 下拉菜单恢复hover显示 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .nav-links .dropdown-menu {
+                display: none !important;
+            }
+            
+            .nav-links .nav-item.dropdown:hover .dropdown-menu {
+                display: block !important;
+            }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
+    <!-- 遮罩层 -->
+    <div class="nav-overlay" id="navOverlay"></div>
+    
     <nav class="navbar" role="navigation">
         <div class="container">
             <a href="/" class="logo">
-                <div class="logo-icon"><img src="https://web.nnepie.com/images/logo168.png" height="60" alt="恩派科技"></div>
+                <div class="logo-icon"><img src="https://web.nnepie.com/images/logo168.png" height="60"></div>
                 <span>恩派科技</span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li class="nav-item"><a href="/" >首页</a></li>
+                <li class="nav-item"><a href="/">首页</a></li>
                 <li class="nav-item dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-url="services">业务服务 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="services" class="dropdown-toggle">业务服务 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="services"><i class="fas fa-plus-circle"></i> 全新建站</a></li>
                         <li><a href="services#redesign"><i class="fas fa-sync-alt"></i> 网站改版</a></li>
@@ -270,7 +391,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-url="portfolio">客户案例 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="portfolio" class="dropdown-toggle">客户案例 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="portfolio"><i class="fas fa-building"></i> 企业官网</a></li>
                         <li><a href="portfolio"><i class="fas fa-shopping-cart"></i> 电商商城</a></li>
@@ -281,7 +402,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-url="about">关于我们 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="about" class="dropdown-toggle">关于我们 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="about"><i class="fas fa-info-circle"></i> 公司介绍</a></li>
                         <li><a href="process"><i class="fas fa-tasks"></i> 建站流程</a></li>
@@ -330,13 +451,11 @@
                     </div>
                 </li>
             </ul>
-            <button class="mobile-menu-btn" aria-label="打开菜单">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="打开菜单">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
-    <!-- 移动端遮罩层 -->
-    <div class="nav-overlay" id="navOverlay"></div>
 
     <section class="section" style="padding-top:120px;">
         <div class="container">
@@ -346,96 +465,104 @@
                 <p class="section-desc">多种联系方式，选择最适合您的方式与我们取得联系</p>
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+            <div class="contact-grid">
                 <div class="fade-in">
-                    <div style="background:white;border-radius:var(--radius-xl);padding:40px;box-shadow:var(--shadow-lg);border:1px solid var(--gray-200);margin-bottom:24px;">
-                        <h3 style="font-size:1.3rem;font-weight:700;color:var(--gray-900);margin-bottom:24px;"><i class="fas fa-comments" style="color:var(--primary);margin-right:10px;"></i>即时咨询</h3>
+                    <div class="contact-card">
+                        <h3 style="font-size:1.3rem;font-weight:700;color:var(--gray-900);margin-bottom:24px;">
+                            <i class="fas fa-comments" style="color:var(--primary);margin-right:10px;"></i>即时咨询
+                        </h3>
                         <div style="display:flex;flex-direction:column;gap:16px;">
-                            <a href="https://wa.me/8613113922007?text=您好，我想咨询企业建站服务，5年1980元全包套餐。" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:12px;background:#f0fdf4;border:1px solid #bbf7d0;transition:var(--transition);" onMouseOver="this.style.transform='translateY(-3px)'" onMouseOut="this.style.transform='translateY(0)'">
-                                <div style="width:56px;height:56px;border-radius:14px;background:#25d366;display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem;"><i class="fab fa-whatsapp"></i></div>
-                                <div>
-                                    <div style="font-weight:700;color:var(--gray-900);">WhatsApp咨询</div>
-                                    <div style="font-size:0.9rem;color:var(--gray-500);">+86 13113922007</div>
+                            <a href="https://wa.me/8613113922007?text=您好，我想咨询企业建站服务，5年1980元全包套餐。" target="_blank" rel="noopener noreferrer" class="contact-item" style="background:#f0fdf4;border:1px solid #bbf7d0;">
+                                <div class="contact-item-icon" style="background:#25d366;"><i class="fab fa-whatsapp"></i></div>
+                                <div class="contact-item-info">
+                                    <div class="contact-item-title">WhatsApp咨询</div>
+                                    <div class="contact-item-desc">+86 13113922007</div>
                                 </div>
-                                <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--success);"></i>
+                                <i class="fas fa-arrow-right contact-item-arrow" style="color:var(--success);"></i>
                             </a>
-                            <a href="#" data-wechat style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:12px;background:#f0fdf4;border:1px solid #bbf7d0;transition:var(--transition);" onMouseOver="this.style.transform='translateY(-3px)'" onMouseOut="this.style.transform='translateY(0)'">
-                                <div style="width:56px;height:56px;border-radius:14px;background:#07c160;display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem;"><i class="fab fa-weixin"></i></div>
-                                <div>
-                                    <div style="font-weight:700;color:var(--gray-900);">微信咨询</div>
-                                    <div style="font-size:0.9rem;color:var(--gray-500);">Lyrasol</div>
+                            <a href="#" data-wechat class="contact-item" style="background:#f0fdf4;border:1px solid #bbf7d0;">
+                                <div class="contact-item-icon" style="background:#07c160;"><i class="fab fa-weixin"></i></div>
+                                <div class="contact-item-info">
+                                    <div class="contact-item-title">微信咨询</div>
+                                    <div class="contact-item-desc">Lyrasol</div>
                                 </div>
-                                <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--success);"></i>
+                                <i class="fas fa-arrow-right contact-item-arrow" style="color:var(--success);"></i>
                             </a>
-                            <a href="tel:+8613113922007" style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;transition:var(--transition);" onMouseOver="this.style.transform='translateY(-3px)'" onMouseOut="this.style.transform='translateY(0)'">
-                                <div style="width:56px;height:56px;border-radius:14px;background:var(--primary);display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem;"><i class="fas fa-phone"></i></div>
-                                <div>
-                                    <div style="font-weight:700;color:var(--gray-900);">电话咨询</div>
-                                    <div style="font-size:0.9rem;color:var(--gray-500);">+86 13113922007</div>
+                            <a href="tel:+8613113922007" class="contact-item" style="background:#eff6ff;border:1px solid #bfdbfe;">
+                                <div class="contact-item-icon" style="background:var(--primary);"><i class="fas fa-phone"></i></div>
+                                <div class="contact-item-info">
+                                    <div class="contact-item-title">电话咨询</div>
+                                    <div class="contact-item-desc">+86 13113922007</div>
                                 </div>
-                                <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--primary);"></i>
+                                <i class="fas fa-arrow-right contact-item-arrow" style="color:var(--primary);"></i>
                             </a>
-                            <a href="mailto:Alex@veybuy.com" style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa;transition:var(--transition);" onMouseOver="this.style.transform='translateY(-3px)'" onMouseOut="this.style.transform='translateY(0)'">
-                                <div style="width:56px;height:56px;border-radius:14px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem;"><i class="fas fa-envelope"></i></div>
-                                <div>
-                                    <div style="font-weight:700;color:var(--gray-900);">邮件咨询</div>
-                                    <div style="font-size:0.9rem;color:var(--gray-500);">Alex@veybuy.com</div>
+                            <a href="mailto:Alex@veybuy.com" class="contact-item" style="background:#fff7ed;border:1px solid #fed7aa;">
+                                <div class="contact-item-icon" style="background:var(--accent);"><i class="fas fa-envelope"></i></div>
+                                <div class="contact-item-info">
+                                    <div class="contact-item-title">邮件咨询</div>
+                                    <div class="contact-item-desc">Alex@veybuy.com</div>
                                 </div>
-                                <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--accent);"></i>
+                                <i class="fas fa-arrow-right contact-item-arrow" style="color:var(--accent);"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="fade-in stagger-2">
-                    <div style="background:linear-gradient(135deg,var(--dark),#1a1a2e);border-radius:var(--radius-xl);padding:40px;color:white;">
-                        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:24px;"><i class="fas fa-clock" style="color:var(--accent);margin-right:10px;"></i>服务时间</h3>
+                    <div class="service-time-card">
+                        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:24px;">
+                            <i class="fas fa-clock" style="color:var(--accent);margin-right:10px;"></i>服务时间
+                        </h3>
                         <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
-                            <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <div class="service-time-row">
                                 <span style="opacity:0.8;">周一至周五</span>
                                 <span style="font-weight:600;">09:00 - 21:00</span>
                             </div>
-                            <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <div class="service-time-row">
                                 <span style="opacity:0.8;">周六至周日</span>
                                 <span style="font-weight:600;">10:00 - 18:00</span>
                             </div>
-                            <div style="display:flex;justify-content:space-between;">
+                            <div class="service-time-row" style="border-bottom:none;padding-bottom:0;">
                                 <span style="opacity:0.8;">紧急支持</span>
                                 <span style="font-weight:600;color:var(--accent);">7×24小时</span>
                             </div>
                         </div>
 
-                        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:24px;"><i class="fas fa-shield-alt" style="color:var(--success);margin-right:10px;"></i>服务保障</h3>
+                        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:24px;">
+                            <i class="fas fa-shield-alt" style="color:var(--success);margin-right:10px;"></i>服务保障
+                        </h3>
                         <div style="display:flex;flex-direction:column;gap:12px;">
-                            <div style="display:flex;align-items:center;gap:10px;">
+                            <div class="guarantee-item">
                                 <i class="fas fa-check-circle" style="color:var(--success);"></i>
                                 <span>7天无理由全额退款</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:10px;">
+                            <div class="guarantee-item">
                                 <i class="fas fa-check-circle" style="color:var(--success);"></i>
                                 <span>5年零额外费用</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:10px;">
+                            <div class="guarantee-item">
                                 <i class="fas fa-check-circle" style="color:var(--success);"></i>
                                 <span>不满意全额退款</span>
                             </div>
-                            <div style="display:flex;align-items:center;gap:10px;">
+                            <div class="guarantee-item">
                                 <i class="fas fa-check-circle" style="color:var(--success);"></i>
                                 <span>24小时技术支持</span>
                             </div>
                         </div>
                     </div>
 
-                    <div style="background:white;border-radius:var(--radius-xl);padding:32px;margin-top:24px;box-shadow:var(--shadow-lg);border:1px solid var(--gray-200);">
-                        <h3 style="font-size:1.1rem;font-weight:700;color:var(--gray-900);margin-bottom:16px;"><i class="fas fa-bolt" style="color:var(--accent);margin-right:8px;"></i>快速响应承诺</h3>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                            <div style="text-align:center;padding:16px;background:var(--gray-100);border-radius:12px;">
-                                <div style="font-size:1.5rem;font-weight:800;color:var(--primary);">30分钟</div>
-                                <div style="font-size:0.85rem;color:var(--gray-500);">紧急问题响应</div>
+                    <div class="response-card">
+                        <h3 style="font-size:1.1rem;font-weight:700;color:var(--gray-900);margin-bottom:16px;">
+                            <i class="fas fa-bolt" style="color:var(--accent);margin-right:8px;"></i>快速响应承诺
+                        </h3>
+                        <div class="response-grid">
+                            <div class="response-item">
+                                <div class="response-number">30分钟</div>
+                                <div class="response-label">紧急问题响应</div>
                             </div>
-                            <div style="text-align:center;padding:16px;background:var(--gray-100);border-radius:12px;">
-                                <div style="font-size:1.5rem;font-weight:800;color:var(--primary);">2小时</div>
-                                <div style="font-size:0.85rem;color:var(--gray-500);">一般问题响应</div>
+                            <div class="response-item">
+                                <div class="response-number">2小时</div>
+                                <div class="response-label">一般问题响应</div>
                             </div>
                         </div>
                     </div>
@@ -449,11 +576,11 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="/" class="logo">
-                        <div class="logo-icon"><img src="https://web.nnepie.com/images/logo168.png" height="60" alt="恩派科技"></div>
+                        <div class="logo-icon"><img src="https://web.nnepie.com/images/logo168.png" height="60"></div>
                         <span>恩派科技</span>
                     </a>
                     <p>为中小企业提供高性价比建站服务：5年1980元全包，零月费、零维护费、无任何套路、多语言支持，助您轻松走向全球。<br>
-（感谢万盛<a href="https://www.ws-expo.com" target="_blank" rel="noopener">展览公司</a>为我们的业务运作提供支持!）</p>
+（感谢万盛<a href="https://www.ws-expo.com" target="_blank">展览公司</a>为我们的业务运作提供支持!）</p>
                     <div class="social-links">
                         <a href="#" aria-label="微信" data-wechat><i class="fab fa-weixin" aria-hidden="true"></i></a>
                         <a href="https://wa.me/8613113922007" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
@@ -499,223 +626,170 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="../js/main.js"></script>
     <script src="https://www.nnepie.com/translate.js"></script>
     <script>
-        // ======================= 移动端修复核心 =======================
+        // ===== 移动端导航菜单修复 =====
         (function() {
-            // 1. 防溢出全局处理
-            const fixOverflow = () => {
-                document.body.style.overflowX = 'hidden';
-                if (document.documentElement.scrollWidth > window.innerWidth) {
-                    document.documentElement.style.overflowX = 'hidden';
-                }
-            };
-            fixOverflow();
-            window.addEventListener('resize', fixOverflow);
-
-            // 2. 移动端导航 + 下拉菜单完美修复
-            const isMobile = () => window.innerWidth <= 768;
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.getElementById('navLinks');
-            const overlay = document.getElementById('navOverlay');
+            var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            var navLinks = document.getElementById('navLinks');
+            var navOverlay = document.getElementById('navOverlay');
+            var dropdowns = document.querySelectorAll('.dropdown');
+            var body = document.body;
             
-            if (mobileMenuBtn && navLinks) {
-                const toggleMenu = (show) => {
-                    if (show === undefined) {
-                        navLinks.classList.toggle('active');
-                        overlay?.classList.toggle('active');
-                    } else {
-                        if (show) {
-                            navLinks.classList.add('active');
-                            overlay?.classList.add('active');
-                        } else {
-                            navLinks.classList.remove('active');
-                            overlay?.classList.remove('active');
-                        }
-                    }
-                    // 关闭所有下拉菜单
-                    if (isMobile()) {
-                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                            menu.classList.remove('show-mobile');
-                        });
-                    }
-                    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-                };
-                
-                mobileMenuBtn.addEventListener('click', (e) => {
+            // 移动端菜单切换
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    toggleMenu();
-                });
-                
-                if (overlay) {
-                    overlay.addEventListener('click', () => toggleMenu(false));
-                }
-                
-                // 关闭菜单当点击链接后 (移动端)
-                navLinks.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (isMobile()) toggleMenu(false);
-                    });
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                    navOverlay.classList.toggle('active');
+                    body.classList.toggle('menu-open');
                 });
             }
             
-            // 3. 修复下拉菜单在移动端的点击展开 + 禁止父级跳转，子级可跳转
-            const initMobileDropdown = () => {
-                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-                const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            // 点击遮罩层关闭菜单
+            if (navOverlay) {
+                navOverlay.addEventListener('click', function() {
+                    closeMobileMenu();
+                });
+            }
+            
+            function closeMobileMenu() {
+                if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+                if (navLinks) navLinks.classList.remove('active');
+                if (navOverlay) navOverlay.classList.remove('active');
+                body.classList.remove('menu-open');
                 
-                const handleDropdown = (e, toggle) => {
-                    if (!isMobile() && !isTouchDevice) return;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const parentLi = toggle.closest('.dropdown');
-                    if (!parentLi) return;
-                    const submenu = parentLi.querySelector('.dropdown-menu');
-                    if (!submenu) return;
-                    
-                    const isOpen = submenu.classList.contains('show-mobile');
-                    // 关闭其他所有下拉
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        if (menu !== submenu) menu.classList.remove('show-mobile');
-                    });
-                    
-                    if (!isOpen) {
-                        submenu.classList.add('show-mobile');
-                        // 存储原始跳转URL
-                        const originalUrl = toggle.getAttribute('data-url');
-                        if (originalUrl && originalUrl !== 'javascript:void(0);') {
-                            // 可选: 不做额外处理, 只展开下拉
-                        }
-                    } else {
-                        submenu.classList.remove('show-mobile');
-                    }
-                };
+                // 关闭所有下拉菜单
+                dropdowns.forEach(function(dropdown) {
+                    dropdown.classList.remove('open');
+                });
+            }
+            
+            // 下拉菜单点击展开（移动端）
+            dropdowns.forEach(function(dropdown) {
+                var toggle = dropdown.querySelector('.dropdown-toggle');
                 
-                dropdownToggles.forEach(toggle => {
-                    // 移除旧监听防止重复
-                    toggle.removeEventListener('click', (e) => handleDropdown(e, toggle));
-                    toggle.removeEventListener('touchstart', (e) => handleDropdown(e, toggle));
-                    // 重新绑定
-                    const handler = (e) => handleDropdown(e, toggle);
-                    toggle.addEventListener('click', handler);
-                    toggle.addEventListener('touchstart', handler, { passive: false });
-                    
-                    // 桌面端保持原样，点击跳转 (如果有href原始值，电脑端恢复)
-                    if (!isMobile()) {
-                        const originalUrl = toggle.getAttribute('data-url');
-                        if (originalUrl && originalUrl !== 'javascript:void(0);') {
-                            toggle.addEventListener('click', (e) => {
-                                if (window.innerWidth > 768) {
-                                    window.location.href = originalUrl;
+                if (toggle) {
+                    toggle.addEventListener('click', function(e) {
+                        // 检测是否为移动端
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            // 关闭其他下拉菜单
+                            dropdowns.forEach(function(other) {
+                                if (other !== dropdown) {
+                                    other.classList.remove('open');
                                 }
                             });
+                            
+                            // 切换当前下拉菜单
+                            dropdown.classList.toggle('open');
                         }
-                    }
-                });
+                    });
+                }
                 
-                // 保证子菜单链接可点且关闭菜单
-                document.querySelectorAll('.dropdown-menu a').forEach(subLink => {
-                    subLink.addEventListener('click', (e) => {
-                        if (isMobile()) {
-                            // 关闭整体导航菜单和下拉
-                            navLinks?.classList.remove('active');
-                            overlay?.classList.remove('active');
-                            document.body.style.overflow = '';
-                            const parentDropdown = subLink.closest('.dropdown');
-                            if (parentDropdown) {
-                                const submenu = parentDropdown.querySelector('.dropdown-menu');
-                                if (submenu) submenu.classList.remove('show-mobile');
-                            }
+                // 下拉菜单项点击后关闭整个菜单
+                var menuLinks = dropdown.querySelectorAll('.dropdown-menu a');
+                menuLinks.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        // 在移动端点击后关闭整个菜单，让页面正常跳转
+                        if (window.innerWidth <= 768) {
+                            closeMobileMenu();
                         }
                     });
                 });
-            };
-            
-            // 监听resize切换行为
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    initMobileDropdown();
-                    // 重置所有下拉菜单关闭状态 (移动转桌面时清除移动样式)
-                    if (window.innerWidth > 768) {
-                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                            menu.classList.remove('show-mobile');
-                        });
-                        if (navLinks) navLinks.classList.remove('active');
-                        if (overlay) overlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    } else {
-                        // 重新绑定移动端效果
-                        initMobileDropdown();
-                    }
-                }, 100);
             });
             
-            // 语言切换器(无冲突)
-            const langBtn = document.getElementById('lang-switcher-btn');
-            const langDropdown = document.getElementById('lang-dropdown');
-            if (langBtn && langDropdown) {
-                langBtn.addEventListener('click', (e) => {
+            // 窗口大小改变时重置菜单状态
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // 点击导航链接（非下拉）关闭菜单
+            var navItems = document.querySelectorAll('.nav-item:not(.dropdown) > a:not(.dropdown-toggle)');
+            navItems.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+        })();
+
+        // 多语言翻译配置
+        translate.language.setLocal('chinese_simplified');
+        translate.service.use('client.edge');
+        translate.selectLanguageTag.languages = 'chinese_simplified,english,spanish,french,russian,arabic,japanese';
+        translate.execute();
+
+        // 自定义语言切换器交互
+        (function() {
+            var langBtn = document.getElementById('lang-switcher-btn');
+            var langDropdown = document.getElementById('lang-dropdown');
+            var langItems = document.querySelectorAll('.lang-item');
+            var currentLangSpan = document.getElementById('current-lang');
+
+            var langNames = {
+                'chinese_simplified': 'Language',
+                'english': 'English',
+                'spanish': 'Español',
+                'french': 'Français',
+                'russian': 'Русский',
+                'arabic': 'العربية',
+                'japanese': '日本語'
+            };
+
+            if (langBtn) {
+                langBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     langDropdown.classList.toggle('show');
                 });
-                document.addEventListener('click', () => {
-                    langDropdown?.classList.remove('show');
+            }
+
+            document.addEventListener('click', function() {
+                if (langDropdown) langDropdown.classList.remove('show');
+            });
+
+            langItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var lang = this.getAttribute('data-lang');
+                    currentLangSpan.textContent = langNames[lang] || '中文';
+                    langItems.forEach(function(i) { i.classList.remove('active'); });
+                    this.classList.add('active');
+                    if (langDropdown) langDropdown.classList.remove('show');
+                    if (typeof translate !== 'undefined' && translate.changeLanguage) {
+                        translate.changeLanguage(lang);
+                    } else if (typeof translate !== 'undefined' && translate.language && translate.language.setLocal) {
+                        translate.language.setLocal(lang);
+                        translate.execute();
+                    }
                 });
-                document.querySelectorAll('.lang-item').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const lang = item.getAttribute('data-lang');
-                        if (lang && typeof translate !== 'undefined') {
-                            if (translate.changeLanguage) translate.changeLanguage(lang);
-                            else if (translate.language?.setLocal) {
-                                translate.language.setLocal(lang);
-                                translate.execute();
-                            }
-                        }
-                        langDropdown?.classList.remove('show');
-                        // 更新current-lang显示
-                        const langName = item.querySelector('.lang-name')?.innerText || lang;
-                        const currentSpan = document.getElementById('current-lang');
-                        if (currentSpan) currentSpan.innerText = langName;
-                    });
+            });
+
+            function updateCurrentLang() {
+                var current = 'chinese_simplified';
+                if (typeof translate !== 'undefined' && translate.language && translate.language.getLocal) {
+                    current = translate.language.getLocal() || 'chinese_simplified';
+                }
+                currentLangSpan.textContent = langNames[current] || '中文';
+                langItems.forEach(function(item) {
+                    if (item.getAttribute('data-lang') === current) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
                 });
             }
-            
-            // 初始化
-            initMobileDropdown();
-            
-            // 防止微信内置浏览器溢出
-            const setVH = () => {
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-            };
-            setVH();
-            window.addEventListener('resize', setVH);
-            
-            // 确保页面所有卡片/图片不溢出
-            const allContainers = document.querySelectorAll('[style*="grid-template-columns"], .container, .section');
-            allContainers.forEach(el => {
-                if (el.style && el.style.gridTemplateColumns && window.innerWidth <= 768) {
-                    if (el.style.gridTemplateColumns === '1fr 1fr') {
-                        el.style.gridTemplateColumns = '1fr';
-                    }
-                }
-            });
+
+            setTimeout(updateCurrentLang, 1000);
         })();
-    </script>
-    <script>
-        // 原有翻译配置 (保持兼容)
-        if (typeof translate !== 'undefined') {
-            translate.language.setLocal('chinese_simplified');
-            translate.service.use('client.edge');
-            translate.selectLanguageTag.languages = 'chinese_simplified,english,spanish,french,russian,arabic,japanese';
-            translate.execute();
-        }
     </script>
     <script src="https://pdf.ws-expo.com/js/data.js"></script>
 </body>
