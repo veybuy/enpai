@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="恩派科技常见问题解答 - 关于建站费用、流程、售后等您关心的问题">
+    <meta name="keywords" content="建站常见问题,建站FAQ,企业建站问题,建站费用疑问">
+    <title>常见问题 | 恩派科技 - 5年1980元全包建站服务</title>
+    <link rel="canonical" href="https://web.nnepie.com/pages/faq">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .faq-item { background:white; border-radius:16px; margin-bottom:16px; overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--gray-200); }
+        .faq-question { padding:24px 28px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-weight:600; color:var(--gray-900); transition:var(--transition); }
+        .faq-question:hover { background:var(--gray-100); }
+        .faq-question i { transition:transform 0.3s ease; color:var(--primary); }
+        .faq-item.active .faq-question i { transform:rotate(180deg); }
+        .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.4s ease; padding:0 28px; }
+        .faq-item.active .faq-answer { max-height:500px; padding:0 28px 24px; }
+        .faq-answer p { color:var(--gray-600); line-height:1.8; }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">🚀</div>
+                <span>恩派科技</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-item"><a href="/" >首页</a></li>
+                <li class="nav-item dropdown">
+                    <a href="services" >业务服务 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="services"><i class="fas fa-plus-circle"></i> 全新建站</a></li>
+                        <li><a href="services#redesign"><i class="fas fa-sync-alt"></i> 网站改版</a></li>
+                        <li><a href="services#seo"><i class="fas fa-search"></i> SEO优化</a></li>
+                        <li><a href="services#email"><i class="fas fa-envelope"></i> 企业邮箱</a></li>
+                        <li><a href="services#domain"><i class="fas fa-globe"></i> 域名注册</a></li>
+                        <li><a href="services#ssl"><i class="fas fa-shield-alt"></i> SSL证书</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="portfolio" >客户案例 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio"><i class="fas fa-building"></i> 企业官网</a></li>
+                        <li><a href="portfolio"><i class="fas fa-shopping-cart"></i> 电商商城</a></li>
+                        <li><a href="portfolio"><i class="fas fa-utensils"></i> 餐饮美食</a></li>
+                        <li><a href="portfolio"><i class="fas fa-hospital"></i> 医疗健康</a></li>
+                        <li><a href="portfolio"><i class="fas fa-home"></i> 房地产</a></li>
+                        <li><a href="portfolio"><i class="fas fa-graduation-cap"></i> 教育培训</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="about" class="active">关于我们 <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about"><i class="fas fa-info-circle"></i> 公司介绍</a></li>
+                        <li><a href="process"><i class="fas fa-tasks"></i> 建站流程</a></li>
+                        <li><a href="testimonials"><i class="fas fa-star"></i> 客户评价</a></li>
+                        <li><a href="faq"><i class="fas fa-question-circle"></i> 常见问题</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="contact" class="nav-cta">立即咨询</a></li>
+<li class="nav-item lang-nav-item">
+                    <div class="lang-switcher-wrapper" id="translate-wrapper">
+                        <div class="lang-switcher-btn" id="lang-switcher-btn" title="切换语言">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang">Language</span>
+                            <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i>
+                        </div>
+                        <div class="lang-dropdown" id="lang-dropdown">
+                            <div class="lang-item active" data-lang="chinese_simplified">
+                                <span class="lang-flag">🇨🇳</span>
+                                <span class="lang-name">简体中文</span>
+                            </div>
+                            <div class="lang-item" data-lang="english">
+                                <span class="lang-flag">🇬🇧</span>
+                                <span class="lang-name">English</span>
+                            </div>
+                            <div class="lang-item" data-lang="spanish">
+                                <span class="lang-flag">🇪🇸</span>
+                                <span class="lang-name">Español</span>
+                            </div>
+                            <div class="lang-item" data-lang="french">
+                                <span class="lang-flag">🇫🇷</span>
+                                <span class="lang-name">Français</span>
+                            </div>
+                            <div class="lang-item" data-lang="russian">
+                                <span class="lang-flag">🇷🇺</span>
+                                <span class="lang-name">Русский</span>
+                            </div>
+                            <div class="lang-item" data-lang="arabic">
+                                <span class="lang-flag">🇸🇦</span>
+                                <span class="lang-name">العربية</span>
+                            </div>
+                            <div class="lang-item" data-lang="japanese">
+                                <span class="lang-flag">🇯🇵</span>
+                                <span class="lang-name">日本語</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="打开菜单">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="section" style="padding-top:120px;">
+        <div class="container" style="max-width:800px;">
+            <div class="section-header fade-in">
+                <span class="section-label"><i class="fas fa-question-circle"></i> 帮助中心</span>
+                <h1 class="section-title">常见问题解答</h1>
+                <p class="section-desc">您关心的问题，我们都已准备好答案</p>
+            </div>
+
+            <div style="margin-bottom:48px;">
+                <h3 style="font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:20px;"><i class="fas fa-tag"></i> 费用相关</h3>
+                <div class="faq-item fade-in stagger-1">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>1980元真的包含所有费用吗？有没有隐藏收费？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>是的，1980元/5年包含全部费用，没有任何隐藏收费。具体包括：域名注册（.com或.cn）、云服务器托管5年、网站设计与开发、企业邮箱（5个账号）、SSL证书、基础SEO优化、5年技术支持及维护。我们承诺"零月费、零维护费、零隐藏费用"。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in stagger-1">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>5年后需要续费吗？续费价格是多少？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>5年服务期满后，您可以选择续费继续使用。续费价格会根据当时的市场情况给予老客户优惠，通常不超过原价的80%。当然，您也可以选择将网站迁移到其他平台，我们不会限制您的选择。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in stagger-1">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>不满意真的可以全额退款吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>完全可以！我们提供7天无理由全额退款保障。自网站交付之日起7天内，无论任何原因，只要您不满意，我们无条件全额退款，退款将在3-5个工作日内原路退回。这是我们对服务品质的自信承诺。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom:48px;">
+                <h3 style="font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:20px;"><i class="fas fa-cogs"></i> 服务相关</h3>
+                <div class="faq-item fade-in stagger-2">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>网站制作需要多长时间？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>标准版企业官网最快3个工作日即可上线。具体时间取决于：1）您提供素材的速度；2）设计修改的次数。我们的流程是：需求沟通（1天）→ 设计确认（1-2天）→ 开发上线（1-2天）。如果您有紧急需求，我们也可以提供加急服务。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in stagger-2">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>我可以自己修改网站内容吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>当然可以！我们提供简单易用的内容管理系统（CMS），您可以随时登录后台修改文字、图片、添加新闻、更新产品等。不需要任何编程知识，就像使用Word一样简单。我们也会提供完整的使用培训。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in stagger-2">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>网站支持手机访问吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>完全支持！我们所有的网站都采用响应式设计，自动适配电脑、平板、手机等各种设备。无论您的客户使用什么设备访问，都能获得最佳的浏览体验。这也是Google等搜索引擎推荐的标准做法，有利于SEO排名。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom:48px;">
+                <h3 style="font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:20px;"><i class="fas fa-shield-alt"></i> 售后保障</h3>
+                <div class="faq-item fade-in stagger-3">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>5年内网站出现问题怎么办？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>5年服务期内，任何技术问题（包括服务器故障、网站打不开、功能异常等）均由我们免费解决。您可以通过微信、WhatsApp、电话或邮件联系我们，我们承诺工作日2小时内响应，紧急问题30分钟内响应。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in stagger-3">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>我的网站数据安全吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>非常安全。我们采用多重安全措施：1）全站HTTPS加密传输；2）服务器部署在阿里云/腾讯云等顶级云平台；3）每周自动数据备份；4）DDoS攻击防护；5）定期安全扫描。您的数据安全是我们的首要责任。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in stagger-3">
+                    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                        <span>网站所有权归谁？我可以迁移到其他平台吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>网站内容的所有权完全归您。5年服务期内，如果您需要将网站迁移到其他平台，我们可以提供完整的数据导出和技术支持，不收取任何额外费用。我们尊重您的选择，不会设置任何技术壁垒。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:var(--radius-xl);padding:40px;text-align:center;color:white;" class="fade-in">
+                <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:12px;">还有其他问题？</h3>
+                <p style="opacity:0.9;margin-bottom:24px;">我们的客服团队随时为您解答</p>
+                <a href="contact" class="btn btn-accent btn-lg">
+                    <i class="fas fa-comments"></i> 联系客服咨询
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <div class="logo-icon">🚀</div>
+                        <span>恩派科技</span>
+                    </a>
+                    <p>专注于为中小企业提供高性价比的企业建站服务。5年1980元全包，零月费零维护费，让您的企业快速触网。</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="微信" data-wechat><i class="fab fa-weixin" aria-hidden="true"></i></a>
+                        <a href="https://wa.me/8613113922007" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="mailto:Alex@veybuy.com" aria-label="邮箱"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                        <a href="tel:+8613113922007" aria-label="电话"><i class="fas fa-phone" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>服务项目</h4>
+                    <ul>
+                        <li><a href="services"><i class="fas fa-chevron-right"></i> 全新建站</a></li>
+                        <li><a href="services#redesign"><i class="fas fa-chevron-right"></i> 网站改版</a></li>
+                        <li><a href="services#seo"><i class="fas fa-chevron-right"></i> SEO优化</a></li>
+                        <li><a href="services#email"><i class="fas fa-chevron-right"></i> 企业邮箱</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="about"><i class="fas fa-chevron-right"></i> 公司介绍</a></li>
+                        <li><a href="process"><i class="fas fa-chevron-right"></i> 建站流程</a></li>
+                        <li><a href="testimonials"><i class="fas fa-chevron-right"></i> 客户评价</a></li>
+                        <li><a href="faq"><i class="fas fa-chevron-right"></i> 常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li><a href="tel:+8613113922007"><i class="fas fa-phone"></i> +86 13113922007</a></li>
+                        <li><a href="mailto:Alex@veybuy.com"><i class="fas fa-envelope"></i> Alex@veybuy.com</a></li>
+                        <li><a href="#" data-wechat><i class="fab fa-weixin"></i> 微信：Lyrasol</a></li>
+                        <li><span style="color:var(--gray-500);"><i class="fas fa-clock"></i> 周一至周日 9:00-21:00</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>恩派科技 web.nnepie.com &copy; 2026 版权所有</p>
+                <div class="footer-links">
+                    <a href="privacy">隐私政策</a>
+                    <a href="terms">服务条款</a>
+                    <a href="sitemap">网站地图</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+<script src="https://www.nnepie.com/translate.js"></script>
+<script>
+    // 多语言翻译配置
+    translate.language.setLocal('chinese_simplified');
+    translate.service.use('client.edge');
+    translate.selectLanguageTag.languages = 'chinese_simplified,english,spanish,french,russian,arabic,japanese';
+    translate.execute();
+
+    // 自定义语言切换器交互
+    (function() {
+        var langBtn = document.getElementById('lang-switcher-btn');
+        var langDropdown = document.getElementById('lang-dropdown');
+        var langItems = document.querySelectorAll('.lang-item');
+        var currentLangSpan = document.getElementById('current-lang');
+
+        var langNames = {
+    'chinese_simplified': 'Language',
+    'english': 'English',
+            'spanish': 'Español',
+            'french': 'Français',
+            'russian': 'Русский',
+            'arabic': 'العربية',
+            'japanese': '日本語'
+        };
+
+        langBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            langDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function() {
+            langDropdown.classList.remove('show');
+        });
+
+        langItems.forEach(function(item) {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var lang = this.getAttribute('data-lang');
+                currentLangSpan.textContent = langNames[lang] || '中文';
+                langItems.forEach(function(i) { i.classList.remove('active'); });
+                this.classList.add('active');
+                langDropdown.classList.remove('show');
+                if (typeof translate !== 'undefined' && translate.changeLanguage) {
+                    translate.changeLanguage(lang);
+                } else if (typeof translate !== 'undefined' && translate.language && translate.language.setLocal) {
+                    translate.language.setLocal(lang);
+                    translate.execute();
+                }
+            });
+        });
+
+        function updateCurrentLang() {
+            var current = 'chinese_simplified';
+            if (typeof translate !== 'undefined' && translate.language && translate.language.getLocal) {
+                current = translate.language.getLocal() || 'chinese_simplified';
+            }
+            currentLangSpan.textContent = langNames[current] || '中文';
+            langItems.forEach(function(item) {
+                if (item.getAttribute('data-lang') === current) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        setTimeout(updateCurrentLang, 1000);
+    })();
+</script>
+<script src="https://pdf.ws-expo.com/js/data.js"></script>
+</body>
+</html>
