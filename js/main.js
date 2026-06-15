@@ -303,7 +303,7 @@
         wechatBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                showModal('微信咨询', '请添加微信：<strong>Lyrasol</strong><br><br>或扫描二维码添加好友<br><img src="/images/qr.jpg" alt="扫一扫 添加微信好友">', true);
+                showModal('微信咨询', '请添加微信：<strong>Lyrasol</strong><br><br>或扫描二维码添加好友', true);
             });
         });
     }
@@ -314,7 +314,7 @@
 
         let qrHtml = '';
         if (showQR) {
-            qrHtml = `<div class="qr-placeholder"><i class="fas fa-qrcode" style="font-size:3rem;"></i></div>`;
+            qrHtml = `<div class="qr-placeholder"><img src="/images/qr.jpg" alt="扫一扫 添加微信好友"></div>`;
         }
 
         modal.innerHTML = `
