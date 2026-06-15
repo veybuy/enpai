@@ -314,7 +314,7 @@
 
         let qrHtml = '';
         if (showQR) {
-            qrHtml = `<div class="qr-placeholder"><img src="/images/qr.jpg" alt="扫一扫 添加微信好友"></div>`;
+            qrHtml = `<div class="qr-placeholder"><img src="/images/qr300.jpg" alt="扫一扫 添加微信好友"></div>`;
         }
 
         modal.innerHTML = `
